@@ -12,7 +12,7 @@
 // Replace with your network credentials
 const char* ssid = "coquinha gelada";
 const char* password = "coquinhagelada1";
-int speed = 230;
+int speed = 255;
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
