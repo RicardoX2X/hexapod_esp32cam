@@ -12,7 +12,6 @@
 // Replace with your network credentials
 const char* ssid = "coquinha gelada";
 const char* password = "coquinhagelada1";
-int speed = 255;
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
@@ -36,11 +35,10 @@ int speed = 255;
 #define PCLK_GPIO_NUM     22
 
 //===================================
-#define MTR_PWM   13
-#define MOTOR_1_PIN_1    14
+#define MOTOR_1_PIN_1    13
 #define MOTOR_1_PIN_2    15
-#define MOTOR_2_PIN_1    2
-#define MOTOR_2_PIN_2    4
+#define MOTOR_2_PIN_1    4
+#define MOTOR_2_PIN_2    2
 
 static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;
 static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
@@ -153,7 +151,6 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 0);
     digitalWrite(MOTOR_2_PIN_1, 0);
     digitalWrite(MOTOR_2_PIN_2, 0);
-    ledcWrite(5, speed);
   }
   else if(!strcmp(variable, "left")) {
     Serial.println("Left");
@@ -161,7 +158,6 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 0);
     digitalWrite(MOTOR_2_PIN_1, 1);
     digitalWrite(MOTOR_2_PIN_2, 0);
-    ledcWrite(5, speed);
   }
   else if(!strcmp(variable, "right")) {
     Serial.println("Right");
@@ -169,7 +165,6 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 0);
     digitalWrite(MOTOR_2_PIN_1, 0);
     digitalWrite(MOTOR_2_PIN_2, 1);
-    ledcWrite(5, speed);
   }
   else if(!strcmp(variable, "backward")) {
     Serial.println("Backward");
@@ -177,7 +172,6 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 1);
     digitalWrite(MOTOR_2_PIN_1, 0);
     digitalWrite(MOTOR_2_PIN_2, 0);
-    ledcWrite(5, speed);
   }
   else if(!strcmp(variable, "stop")) {
     Serial.println("Stop");
@@ -244,7 +238,6 @@ void setup() {
 
   // Motor uses PWM Channel 8
   ledcSetup(5, 2000, 8);
-  ledcAttachPin(MTR_PWM, 5);
   
   
   camera_config_t config;
